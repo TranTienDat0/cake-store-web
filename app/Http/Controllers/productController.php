@@ -29,8 +29,9 @@ class productController extends Controller
         return $htmlOption;
     }
     public function store_product(Request $request){ 
+       
         $filename = $request->feature_image_path->getClientOriginalName();
-        $path = $request->file('feature_image_path')->storeAs('public/product',$filename);
+        $path = $request->file('feature_image_path')->storeAs('public/uploads',$filename);
  
     }
 }

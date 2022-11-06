@@ -28,16 +28,13 @@
                                 <label>Ảnh đại diện:</label>
                                 <input type="file" name="feature_image_path" class="form-control-file">
                             </div>
-                            <div class="form-group">
-                                <label>Ảnh chi tiết:</label>
-                                <input type="file" multiple name="image_path[]" class="form-control-file">
-                            </div>   
+                           
                             <div class="form-group">
                                 <label>Nhập nội dung: </label>
                                 <textarea name="content" id="content"></textarea>
                             </div>                                     
                             <div class="form-group">
-                              <label for="pwd">Chọn danh mục cha:</label>
+                              <label for="pwd">Chọn danh mục:</label>
                               <select class="form-control" name="parent_id">
                                 <option value="0">Chọn danh mục</option>
                                 {{!! $htmlOption !!}}
