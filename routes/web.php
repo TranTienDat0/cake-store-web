@@ -25,9 +25,10 @@ Route::get('/homeAdmin', function () {
 Route::get('register', [LoginController::class, 'register'])->name('register');
 Route::post('register', [LoginController::class, 'register_action'])->name('register.action');
 
-//login Admin
+//login/logout Admin
 Route::get('loginAdmin', [LoginController::class, 'login'])->name('login');
 Route::post('loginAdmin', [LoginController::class, 'login_action'])->name('login.action');
+Route::get('logoutAdmin', [LoginController::class, 'login'])->name('logout');
 
 //category
 Route::get('category', [categoriesController::class, 'index'])->name('category');

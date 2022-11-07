@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ asset('homeAdmin') }}" class="brand-link">
@@ -59,9 +60,18 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('user') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fa-solid fa-users"></i>
               <p>
                Quản lý user
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <p>
+               Đăng xuất
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>

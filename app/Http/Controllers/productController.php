@@ -21,7 +21,7 @@ class productController extends Controller
         $this->product = $product;
     }
     public function index(){
-        $products = $this->product->paginate(15);
+        $products = $this->product->paginate(6);
         return view('admin.products.index', compact('products'));
     }
     public function create(){
@@ -40,16 +40,10 @@ class productController extends Controller
         $filename = $request->image->getClientOriginalName();
         $image = $request->file('image')->move('uploads',$filename);
        
-        $name = request("name"); //<=> Request::get("name");
+        $name = request("name");
         $category_id = request("parent_id");
         $content = request("content");
         $price = request("price");
-       
-
-        // if(Request::hash_file("image")){
-        //     $image = time()."_".Request::file("image")->getClientOriginalName();
-        //     Request::file("image")->move("uplaods",$image);
-        // }
        
         //update ban ghi
         DB::table("Products")->insert(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image]);

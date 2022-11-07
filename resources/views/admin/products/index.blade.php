@@ -57,7 +57,7 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>
-                                            <img width="100px" src="{{ $product->image }}" alt="">
+                                            <img width="100px" height="70px" src="{{ $product->image }}" alt="">
                                         </td>
                                         <td>
                                             <?php
@@ -75,7 +75,7 @@
                         </table>
                     </div>
                     <div class="col-md-12">
-                        {{-- {{ $categories->links('pagination::bootstrap-4') }} --}}
+                        {{ $products->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
                 <!-- /.row -->

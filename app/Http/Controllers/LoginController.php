@@ -32,9 +32,9 @@ class LoginController extends Controller
     //
     public function login(){
         $data['title'] = 'Login';
-        if(auth()->check()){
-            return redirect()->to('homeAdmin');
-        }
+        // if(auth()->check()){
+        //     return redirect()->to('homeAdmin');
+        // }
         return view('admin/login', $data);
     }
     public function login_action(Request $request){
