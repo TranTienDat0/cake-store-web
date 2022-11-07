@@ -51,3 +51,7 @@ Route::get('/delete_user/{user_id}', [userController::class, 'delete'])->name('d
 Route::get('product', [productController::class, 'index'])->name('product');
 Route::get('newProduct', [productController::class, 'create'])->name('newProduct');
 Route::post('store_product', [productController::class, 'store'])->name('store_product');
+Route::get('/edit_product/{id}', [productController::class, 'edit'])->name('edit_product');
+Route::post('/update_product/{id}', [productController::class, 'update'])->name('update_product');
+Route::get('/delete_product/{id}', [productController::class, 'delete'])->name('delete_product');
+

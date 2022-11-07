@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class productController extends Controller
 {
-    use HasFactory;
     private $category;
     private $product;
     public function __construct(Category $category, Products $product)
@@ -47,6 +46,36 @@ class productController extends Controller
        
         //update ban ghi
         DB::table("Products")->insert(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image]);
+        return redirect()->route('product');
+    }
+
+    public function edit($id)
+    {
+        $product = $this->product->find($id);
+        $htmlOption = $this->getCategory($product->id);
+
+        return view('admin.products.editProduct', compact('product', 'htmlOption'));
+
+    }
+
+    public function update($id, Request $request)
+    {
+        $filename = $request->image->getClientOriginalName();
+        $image = $request->file('image')->move('uploads',$filename);
+       
+        $name = request("name");
+        $category_id = request("parent_id");
+        $content = request("content");
+        $price = request("price");
+       
+        //update ban ghi
+        DB::table("Products")->where("id","=",$id)->update(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image]);
+        return redirect()->route('product');
+    }
+
+    public function delete($id)
+    {
+        $this->product->find($id)->delete();
         return redirect()->route('product');
     }
 }

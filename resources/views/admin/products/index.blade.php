@@ -61,13 +61,18 @@
                                         </td>
                                         <td>
                                             <?php
-                                            $category = DB::table('tb_category')->where('id', '=', $product->category_id)->first();
+                                            $category = DB::table('tb_category')
+                                                ->where('id', '=', $product->category_id)
+                                                ->first();
                                             echo isset($category->categoriesName) ? $category->categoriesName : '';
                                             ?>
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-default">Edit</a>
-                                            <a class="btn btn-danger">Delete</a>
+                                            <a href="{{ route('edit_product', ['id' => $product->id]) }}"
+                                                class="btn btn-default">Edit</a>
+                                            <a onclick="return confirm('Are you sure you want to delete?')"
+                                                href="{{ route('delete_product', ['id' => $product->id]) }}"
+                                                class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

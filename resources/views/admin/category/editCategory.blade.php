@@ -23,7 +23,7 @@
                               <input type="text"  name="categoriesName" value="{{ $category->categoriesName }}" class="form-control" placeholder="Enter tên danh mục" id="email">
                             </div>
                             <div class="form-group">
-                              <label for="pwd">Chọn danh mục cha:</label>
+                              <label for="pwd">Chọn danh mục:</label>
                               <select class="form-control" name="parent_id">
                                 <option value="0">Chọn danh mục</option>
                                 {{!! $htmlOption !!}}
