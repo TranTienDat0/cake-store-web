@@ -5,19 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
+use App\Models\Products;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
+
 
 class productController extends Controller
 {
+    use HasFactory;
     private $category;
-    public function __construct(Category $category)
+    private $product;
+    public function __construct(Category $category, Products $product)
     {
         $this->category = $category;
+        $this->product = $product;
     }
     public function index(){
-
-        return view('admin.products.index');
+        $products = $this->product->paginate(15);
+        return view('admin.products.index', compact('products'));
     }
-    public function create_product(){
+    public function create(){
         $htmlOption = $this->getCategory($parentId = '');
         return view('admin.products.addProduct', compact('htmlOption'));
     }
@@ -28,10 +35,24 @@ class productController extends Controller
         $htmlOption = $recusive->categoryRecusive($parentId);
         return $htmlOption;
     }
-    public function store_product(Request $request){ 
+    public function store(Request $request){ 
        
-        $filename = $request->feature_image_path->getClientOriginalName();
-        $path = $request->file('feature_image_path')->storeAs('public/uploads',$filename);
- 
+        $filename = $request->image->getClientOriginalName();
+        $image = $request->file('image')->move('uploads',$filename);
+       
+        $name = request("name"); //<=> Request::get("name");
+        $category_id = request("parent_id");
+        $content = request("content");
+        $price = request("price");
+       
+
+        // if(Request::hash_file("image")){
+        //     $image = time()."_".Request::file("image")->getClientOriginalName();
+        //     Request::file("image")->move("uplaods",$image);
+        // }
+       
+        //update ban ghi
+        DB::table("Products")->insert(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image]);
+        return redirect()->route('product');
     }
 }

@@ -26,7 +26,7 @@
                               </div>    
                             <div class="form-group">
                                 <label>Ảnh đại diện:</label>
-                                <input type="file" name="feature_image_path" class="form-control-file">
+                                <input type="file" name="image" class="form-control-file">
                             </div>
                            
                             <div class="form-group">

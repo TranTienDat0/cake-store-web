@@ -39,14 +39,14 @@ Route::get('/delete/{id}', [categoriesController::class, 'delete'])->name('delet
 
 //User
 Route::get('user', [userController::class, 'index'])->name('user');
-Route::get('newUser', [userController::class, 'create_user'])->name('newUser');
-Route::post('store_user',[userController::class, 'store_user'])->name('store_user');
-Route::get('/edit_user/{user_id}', [userController::class, 'edit_user'])->name('edit_user');
-Route::post('/update_user/{user_id}', [userController::class, 'update_user'])->name('update_user');
-Route::get('/delete_user/{user_id}', [userController::class, 'delete_user'])->name('delete_user');
+Route::get('newUser', [userController::class, 'create'])->name('newUser');
+Route::post('store_user',[userController::class, 'store'])->name('store_user');
+Route::get('/edit_user/{user_id}', [userController::class, 'edit'])->name('edit_user');
+Route::post('/update_user/{user_id}', [userController::class, 'update'])->name('update_user');
+Route::get('/delete_user/{user_id}', [userController::class, 'delete'])->name('delete_user');
 
 //product
 
 Route::get('product', [productController::class, 'index'])->name('product');
-Route::get('newProduct', [productController::class, 'create_product'])->name('newProduct');
-Route::post('store_product', [productController::class, 'store_product'])->name('store_product');
+Route::get('newProduct', [productController::class, 'create'])->name('newProduct');
+Route::post('store_product', [productController::class, 'store'])->name('store_product');

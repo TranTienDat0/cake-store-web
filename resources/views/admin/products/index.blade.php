@@ -1,7 +1,8 @@
 @extends('layout.layoutAdmin')
 
 @section('title')
-    <title>Products List</title>
+    <title>
+        Products List</title>
 
 @section('sidebar')
     @parent
@@ -9,10 +10,9 @@
     <p>This is appended to the master sidebar.</p>
 @endsection
 <script>
-  function canNotDelete()
-{
-    alert('Không thể xoá do danh mục này tồn tại sản phẩm');
-}
+    function canNotDelete() {
+        alert('Không thể xoá do danh mục này tồn tại sản phẩm');
+    }
 </script>
 
 @section('content')
@@ -51,21 +51,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($categories as $category) --}}
+                                @foreach ($products as $product)
                                     <tr>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td></td> 
-                                        <td></td>
-                                        <td></td>
+                                        <th scope="row">{{ $product->id }}</th>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->price }}</td>
                                         <td>
-                                            <a href=""
-                                                class="btn btn-default">Edit</a>
-                                            <a 
-                                                class="btn btn-danger">Delete</a>
+                                            <img width="100px" src="{{ $product->image }}" alt="">
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $category = DB::table('tb_category')->where('id', '=', $product->category_id)->first();
+                                            echo isset($category->categoriesName) ? $category->categoriesName : '';
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-default">Edit</a>
+                                            <a class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

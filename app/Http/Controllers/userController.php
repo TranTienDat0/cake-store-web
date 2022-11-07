@@ -37,7 +37,7 @@ class userController extends Controller
         return redirect()->route('user');
     }
    
-    public function edit_user($user_id)
+    public function edit($user_id)
     {
         $user = $this->user->find($user_id);
 
@@ -45,7 +45,7 @@ class userController extends Controller
 
     }
 
-    public function update_user($user_id, Request $request)
+    public function update($user_id, Request $request)
     {
         $this->user->find($user_id)->update([
             'name' => $request->name,
@@ -56,7 +56,7 @@ class userController extends Controller
 
     }
 
-    public function delete_user($user_id)
+    public function delete($user_id)
     {
         $this->user->find($user_id)->delete();
         return redirect()->route('user');
