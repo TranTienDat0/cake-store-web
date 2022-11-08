@@ -55,3 +55,9 @@ Route::get('/edit_product/{id}', [productController::class, 'edit'])->name('edit
 Route::post('/update_product/{id}', [productController::class, 'update'])->name('update_product');
 Route::get('/delete_product/{id}', [productController::class, 'delete'])->name('delete_product');
 
+
+//HomePage
+Route::get('/home', function () {
+    return view('frontend.HomePage.index');
+})->name('home');
+
