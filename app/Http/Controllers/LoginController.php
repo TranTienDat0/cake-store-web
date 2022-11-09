@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function register(){
         $data['title'] = 'Register';
-        return view('frondend/register', $data);
+        return view('frontend/account/register', $data);
     }
     public function register_action(Request $request){
         $request->validate([
