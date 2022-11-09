@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
+use App\Models\CategoryAdmin;
 
 class categoriesController extends Controller
 {
     //
     private $category;
-    public function __construct(Category $category)
+    public function __construct(CategoryAdmin $category)
     {
         $this->category = $category;
     }

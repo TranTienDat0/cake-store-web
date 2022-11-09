@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\CategoryAdmin;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
 use App\Models\Products;
+use App\Models\ProductsAdmin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,7 @@ class productController extends Controller
 {
     private $category;
     private $product;
-    public function __construct(Category $category, Products $product)
+    public function __construct(CategoryAdmin $category, ProductsAdmin $product)
     {
         $this->category = $category;
         $this->product = $product;

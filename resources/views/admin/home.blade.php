@@ -1,4 +1,4 @@
-@extends('layout.layoutAdmin')
+@extends('admin.layout.layoutAdmin')
 
 @section('title')
     <title>Trang chủ</title>

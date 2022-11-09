@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\categoriesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\homeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +58,8 @@ Route::get('/delete_product/{id}', [productController::class, 'delete'])->name('
 
 
 //HomePage
-Route::get('/home', function () {
-    return view('frontend.HomePage.index');
-})->name('home');
+// Route::get('/home', function () {
+//     return view('frontend.HomePage.index');
+// })->name('home');
+Route::get('home',[homeController::class, 'index'])->name('home');
 
