@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 
 
-class productController extends Controller
+class productControllerAdmin extends Controller
 {
     private $category;
     private $product;
@@ -44,9 +44,10 @@ class productController extends Controller
         $category_id = request("parent_id");
         $content = request("content");
         $price = request("price");
+        $views_count = request("views_count");
        
         //update ban ghi
-        DB::table("Products")->insert(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image]);
+        DB::table("Products")->insert(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image,"views_count"=>$views_count]);
         return redirect()->route('product');
     }
 
@@ -68,9 +69,10 @@ class productController extends Controller
         $category_id = request("parent_id");
         $content = request("content");
         $price = request("price");
+        $views_count = request("views_count");
        
         //update ban ghi
-        DB::table("Products")->where("id","=",$id)->update(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image]);
+        DB::table("Products")->where("id","=",$id)->update(["name"=>$name,"price"=>$price,"content"=>$content,"category_id"=>$category_id,"image"=>$image,"views_count"=>$views_count]);
         return redirect()->route('product');
     }
 

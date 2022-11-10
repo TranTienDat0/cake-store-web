@@ -57,7 +57,7 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>
-                                            <img width="100px" height="70px" src="{{ $product->image }}" alt="">
+                                            <img width="100px" height="70px" src="{{asset('uploads/img/'. $product->image) }}" alt="">
                                         </td>
                                         <td>
                                             <?php

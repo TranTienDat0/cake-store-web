@@ -6,7 +6,7 @@ use App\Models\UserAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class userController extends Controller
+class userControllerAdmin extends Controller
 {
     private $user;
     public function __construct(UserAdmin $users)

@@ -7,21 +7,29 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
+                            @if ($category->categoryChildrent->count())
                             <a data-toggle="collapse" data-parent="#accordian" href="#sportswear_{{ $category->id }}">
                                 <span class="badge pull-right">
-                                    @if ($category->categoryChildrent->count())
+                                    
                                         <i class="fa fa-plus"></i>
-                                    @endif
+                                    
                                 </span>
                                 {{ $category->categoriesName }}
-                            </a>
+                            </a>                   
+                            @else
+                            <a href="#">
+                                <span class="badge pull-right">
+                               </span>
+                                {{ $category->categoriesName }}
+                            </a>     
+                            @endif
                         </h4>
                     </div>
                     <div id="sportswear_{{ $category->id }}" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
                                 @foreach ($category->categoryChildrent as $categoryChildrent)
-                                    <li><a href="#">{{ $categoryChildrent->categoriesName }} </a></li>
+                                    <li><a href="{{ route('listCategory',['id'=>$categoryChildrent->id]) }}">{{ $categoryChildrent->categoriesName }} </a></li>
                                 @endforeach
 
                             </ul>

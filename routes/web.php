@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\categoriesController;
-use App\Http\Controllers\userController;
-use App\Http\Controllers\productController;
+use App\Http\Controllers\categoriesControllerAdmin;
+use App\Http\Controllers\userControllerAdmin;
+use App\Http\Controllers\productControllerAdmin;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\productDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,34 +34,35 @@ Route::post('loginAdmin', [LoginController::class, 'login_action'])->name('login
 Route::get('logoutAdmin', [LoginController::class, 'login'])->name('logout');
 
 //category
-Route::get('category', [categoriesController::class, 'index'])->name('category');
-Route::get('newCategory', [categoriesController::class, 'create'])->name('newCategory');
-Route::post('store',[categoriesController::class, 'store'])->name('store');
-Route::get('/edit/{id}', [categoriesController::class, 'edit'])->name('edit');
-Route::post('/update/{id}', [categoriesController::class, 'update'])->name('update');
-Route::get('/delete/{id}', [categoriesController::class, 'delete'])->name('delete');
+Route::get('category', [categoriesControllerAdmin::class, 'index'])->name('category');
+Route::get('newCategory', [categoriesControllerAdmin::class, 'create'])->name('newCategory');
+Route::post('store',[categoriesControllerAdmin::class, 'store'])->name('store');
+Route::get('/edit/{id}', [categoriesControllerAdmin::class, 'edit'])->name('edit');
+Route::post('/update/{id}', [categoriesControllerAdmin::class, 'update'])->name('update');
+Route::get('/delete/{id}', [categoriesControllerAdmin::class, 'delete'])->name('delete');
 
 //User
-Route::get('user', [userController::class, 'index'])->name('user');
-Route::get('newUser', [userController::class, 'create'])->name('newUser');
-Route::post('store_user',[userController::class, 'store'])->name('store_user');
-Route::get('/edit_user/{user_id}', [userController::class, 'edit'])->name('edit_user');
-Route::post('/update_user/{user_id}', [userController::class, 'update'])->name('update_user');
-Route::get('/delete_user/{user_id}', [userController::class, 'delete'])->name('delete_user');
+Route::get('user', [userControllerAdmin::class, 'index'])->name('user');
+Route::get('newUser', [userControllerAdmin::class, 'create'])->name('newUser');
+Route::post('store_user',[userControllerAdmin::class, 'store'])->name('store_user');
+Route::get('/edit_user/{user_id}', [userControllerAdmin::class, 'edit'])->name('edit_user');
+Route::post('/update_user/{user_id}', [userControllerAdmin::class, 'update'])->name('update_user');
+Route::get('/delete_user/{user_id}', [userControllerAdmin::class, 'delete'])->name('delete_user');
 
 //product
 
-Route::get('product', [productController::class, 'index'])->name('product');
-Route::get('newProduct', [productController::class, 'create'])->name('newProduct');
-Route::post('store_product', [productController::class, 'store'])->name('store_product');
-Route::get('/edit_product/{id}', [productController::class, 'edit'])->name('edit_product');
-Route::post('/update_product/{id}', [productController::class, 'update'])->name('update_product');
-Route::get('/delete_product/{id}', [productController::class, 'delete'])->name('delete_product');
+Route::get('product', [productControllerAdmin::class, 'index'])->name('product');
+Route::get('newProduct', [productControllerAdmin::class, 'create'])->name('newProduct');
+Route::post('store_product', [productControllerAdmin::class, 'store'])->name('store_product');
+Route::get('/edit_product/{id}', [productControllerAdmin::class, 'edit'])->name('edit_product');
+Route::post('/update_product/{id}', [productControllerAdmin::class, 'update'])->name('update_product');
+Route::get('/delete_product/{id}', [productControllerAdmin::class, 'delete'])->name('delete_product');
 
 
 //HomePage
-// Route::get('/home', function () {
-//     return view('frontend.HomePage.index');
-// })->name('home');
 Route::get('home',[homeController::class, 'index'])->name('home');
+//category
+Route::get('/listCategory/{id}', [categoryController::class, 'index'])->name('listCategory');
+//Detail
+Route::get('/productDetail/{id}',[productDetailController::class, 'index'])->name('productDetail');
 

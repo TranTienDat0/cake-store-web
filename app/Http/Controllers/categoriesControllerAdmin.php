@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Components\Recusive;
 use App\Models\CategoryAdmin;
 
-class categoriesController extends Controller
+class categoriesControllerAdmin extends Controller
 {
     //
     private $category;

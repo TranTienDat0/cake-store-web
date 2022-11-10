@@ -46,19 +46,26 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img width="50px" height="150px" src="{{ $product->image }}"
-                                                alt="" />
-                                            <h2>{{ number_format($product->price) }} VNĐ</h2>
-                                            <p>{{ $product->name }}</p>
+                                            <a href="{{ route('productDetail', ['id' => $product->id]) }}"
+                                                style="cursor: pointer;">
+                                                <img width="50px" height="150px"
+                                                    src="{{ asset('uploads/img/' . $product->image) }}"
+                                                    alt="" />
+                                                <h2>{{ number_format($product->price) }} VNĐ</h2>
+                                                <p>{{ $product->name }}</p>
+                                            </a>
                                             <a href="#" class="btn btn-default add-to-cart"><i
                                                     class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
-                                                <h2>{{ number_format($product->price) }} VNĐ</h2>
-                                                <p>{{ $product->name }}</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                <a href="{{ route('productDetail', ['id' => $product->id]) }}"
+                                                    style="cursor: pointer;">
+                                                    <h2>{{ number_format($product->price) }} VNĐ</h2>
+                                                    <p>{{ $product->name }}</p>
+                                                    <a href="#" class="btn btn-default add-to-cart"><i
+                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -83,80 +90,87 @@
                             <ul class="nav nav-tabs">
                                 @foreach ($categorys as $item => $categoryItem)
                                     <li class="{{ $item == 0 ? 'active' : '' }}"><a
-                                            href="#category_cat_{{$categoryItem->id }}"
+                                            href="#category_cat_{{ $categoryItem->id }}"
                                             data-toggle="tab">{{ $categoryItem->categoriesName }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
                         <div class="tab-content">
                             @foreach ($categorys as $ProductsItem => $categoryItemPro)
-                                <div class="tab-pane fade {{ $ProductsItem == 0 ? 'active in' : '' }}" id="category_cat_{{ $categoryItemPro->id }}">
+                                <div class="tab-pane fade {{ $ProductsItem == 0 ? 'active in' : '' }}"
+                                    id="category_cat_{{ $categoryItemPro->id }}">
                                     @foreach ($categoryItemPro->products as $ProductsTab)
                                         <div class="col-sm-3">
                                             <div class="product-image-wrapper">
                                                 <div class="single-products">
                                                     <div class="productinfo text-center">
-                                                        <img src="{{ $ProductsTab->image }}" alt="" />
-                                                        <h2>{{ number_format($ProductsTab->price) }}</h2>
-                                                        <p>{{ $ProductsTab->name }}</p>
+                                                        <a href="{{ route('productDetail', ['id' => $ProductsTab->id]) }}"
+                                                            style="cursor: pointer;">
+                                                            <img src="{{ asset('uploads/img/' . $ProductsTab->image) }}"
+                                                                alt="" />
+                                                            <h2>{{ number_format($ProductsTab->price) }} VNĐ</h2>
+                                                            <p>{{ $ProductsTab->name }}</p>
+                                                        </a>
                                                         <a href="#" class="btn btn-default add-to-cart"><i
                                                                 class="fa fa-shopping-cart"></i>Add to cart</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach                                 
+                                    @endforeach
                                 </div>
                             @endforeach
                         </div>
-					</div>
-                        <!--/category-tab-->
+                    </div>
+                    <!--/category-tab-->
 
-                        <div class="recommended_items">
-                            <!--recommended_items-->
-                            <h2 class="title text-center">recommended items</h2>
+                    <div class="recommended_items">
+                        <!--recommended_items-->
+                        <h2 class="title text-center">recommended items</h2>
 
-                            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
+                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
 
-                                    @foreach ($productsRecom as $item => $productsItem)
-                                        @if ($item % 3 == 0)
-                                            <div class="item {{ $item == 0 ? 'active' : '' }}">
-                                        @endif
-                                        <div class="col-sm-4">
-                                            <div class="product-image-wrapper">
-                                                <div class="single-products">
-                                                    <div class="productinfo text-center">
+                                @foreach ($productsRecom as $item => $productsItem)
+                                    @if ($item % 3 == 0)
+                                        <div class="item {{ $item == 0 ? 'active' : '' }}">
+                                    @endif
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="{{ route('productDetail', ['id' => $productsItem->id]) }}"
+                                                        style="cursor: pointer;">
                                                         <img width="50px" height="150px"
-                                                            src="{{ $productsItem->image }}" alt="" />
-                                                        <h2>{{ number_format($productsItem->price) }}</h2>
-                                                        <p>{{ $productsItem->categoryName }}</p>
-                                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                                class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                    </div>
-
+                                                            src="{{ asset('uploads/img/' . $productsItem->image) }}"
+                                                            alt="" />
+                                                        <h2>{{ number_format($productsItem->price) }} VNĐ</h2>
+                                                        <p>{{ $productsItem->name }}</p>
+                                                    </a>
+                                                    <a href="#" class="btn btn-default add-to-cart"><i
+                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        @if ($item % 3 == 2)
-                                </div>
-                                @endif
-                                @endforeach
+                                    </div>
+                                    @if ($item % 3 == 2)
                             </div>
-                            <a class="left recommended-item-control" href="#recommended-item-carousel"
-                                data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel"
-                                data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
+                            @endif
+                            @endforeach
                         </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel"
+                            data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
                     </div>
-                    <!--/recommended_items-->
-
                 </div>
+                <!--/recommended_items-->
+
             </div>
+        </div>
         </div>
     </section>
 

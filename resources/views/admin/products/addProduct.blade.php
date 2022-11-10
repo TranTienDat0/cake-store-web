@@ -23,7 +23,11 @@
                             <div class="form-group">
                                 <label >Giá sản phẩm:</label>
                                 <input type="text" name="price" class="form-control" placeholder="Enter giá sản phẩm">
-                              </div>    
+                              </div> 
+                              <div class="form-group">
+                                <label >View Count</label>
+                                <input type="text" name="views_count" class="form-control" placeholder="Enter view">
+                              </div>   
                             <div class="form-group">
                                 <label>Ảnh đại diện:</label>
                                 <input type="file" name="image" class="form-control-file">
