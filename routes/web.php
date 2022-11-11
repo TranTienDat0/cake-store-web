@@ -8,6 +8,7 @@ use App\Http\Controllers\productControllerAdmin;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productDetailController;
+use App\Http\Controllers\cartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,4 +66,6 @@ Route::get('home',[homeController::class, 'index'])->name('home');
 Route::get('/listCategory/{id}', [categoryController::class, 'index'])->name('listCategory');
 //Detail
 Route::get('/productDetail/{id}',[productDetailController::class, 'index'])->name('productDetail');
+//cart
+Route::get('/cart/{id}', [cartController::class, 'index'])->name('cart');
 

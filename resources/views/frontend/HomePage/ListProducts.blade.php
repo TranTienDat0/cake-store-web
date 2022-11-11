@@ -56,7 +56,7 @@
                                             <div class="overlay-content">
                                                 <a href="{{ route('productDetail', ['id' => $pro->id]) }}"
                                                     style="cursor: pointer;">
-                                                    <h2>{{ number_format($pro->price) }}</h2>
+                                                    <h2>{{ number_format($pro->price) }} VNĐ</h2>
                                                     <p>{{ $pro->name }}</p>
                                                 </a>
 

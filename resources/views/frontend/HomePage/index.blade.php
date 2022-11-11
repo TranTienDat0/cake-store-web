@@ -63,7 +63,7 @@
                                                     style="cursor: pointer;">
                                                     <h2>{{ number_format($product->price) }} VNĐ</h2>
                                                     <p>{{ $product->name }}</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i
+                                                    <a href="{{ route('cart', ['id'=>$product->id]) }}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-shopping-cart"></i>Add to cart</a>
                                                 </a>
                                             </div>
