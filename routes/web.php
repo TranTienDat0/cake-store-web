@@ -67,5 +67,6 @@ Route::get('/listCategory/{id}', [categoryController::class, 'index'])->name('li
 //Detail
 Route::get('/productDetail/{id}',[productDetailController::class, 'index'])->name('productDetail');
 //cart
-Route::get('/cart/{id}', [cartController::class, 'index'])->name('cart');
-
+Route::post('/cart', [cartController::class, 'save'])->name('cart');
+Route::get('/show-cart', [cartController::class, 'showCart'])->name('show-cart');
+Route::get('/delete_cart/{rowId}', [cartController::class, 'delete'])->name('delete_cart');

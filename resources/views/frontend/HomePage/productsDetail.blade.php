@@ -64,14 +64,19 @@
                                     <img src="{{ asset('eshopper/images/product-details/rating.png') }}"
                                         alt="" />
                                     <br>
-                                    <span>
-                                        <span>{{ number_format($pro->price) }}</span>
-
-                                        <button type="button" class="btn btn-fefault cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Add to cart
-                                        </button>
-                                    </span>
+                                    <form action="{{ URL::to('cart') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <span>
+                                            <span>{{ number_format($pro->price) }}</span>
+                                            <label>Số lượng: </label>
+                                            <input name="qty" type="number" min="1" value="1" />
+                                            <input name="productid_hidden" type="hidden" value="{{ $pro->id }}"/>
+                                            <button type="submit" class="btn btn-fefault cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Add to cart
+                                            </button>
+                                        </span>
+                                    </form>
                                     <p><b>Content:</b> {{ $pro->content }}</p>                                 
                                     <a href=""><img src="images/product-details/share.png"
                                             class="share img-responsive" alt="" /></a>

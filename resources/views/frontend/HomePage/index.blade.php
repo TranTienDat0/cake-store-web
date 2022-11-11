@@ -59,13 +59,18 @@
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
-                                                <a href="{{ route('productDetail', ['id' => $product->id]) }}"
-                                                    style="cursor: pointer;">
-                                                    <h2>{{ number_format($product->price) }} VNĐ</h2>
-                                                    <p>{{ $product->name }}</p>
-                                                    <a href="{{ route('cart', ['id'=>$product->id]) }}" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                </a>
+                                                <form action="{{ URL::to('cart') }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    <a href="{{ route('productDetail', ['id' => $product->id]) }}"
+                                                        style="cursor: pointer;">
+                                                        <h2>{{ number_format($product->price) }} VNĐ</h2>
+                                                        <p>{{ $product->name }}</p>
+                                                        <input name="qty" type="hidden" min="1" value="1" />
+                                                        <input name="productid_hidden" type="hidden" value="{{ $product->id }}"/>
+                                                        <button type="submit" class="btn btn-default add-to-cart"><i
+                                                                class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                    </a>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -104,15 +109,24 @@
                                             <div class="product-image-wrapper">
                                                 <div class="single-products">
                                                     <div class="productinfo text-center">
-                                                        <a href="{{ route('productDetail', ['id' => $ProductsTab->id]) }}"
-                                                            style="cursor: pointer;">
-                                                            <img src="{{ asset('uploads/img/' . $ProductsTab->image) }}"
-                                                                alt="" />
-                                                            <h2>{{ number_format($ProductsTab->price) }} VNĐ</h2>
-                                                            <p>{{ $ProductsTab->name }}</p>
-                                                        </a>
-                                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                                class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                        <form action="{{ URL::to('cart') }}" method="post">
+                                                            {{ csrf_field() }}
+                                                            <span>
+                                                                <a href="{{ route('productDetail', ['id' => $ProductsTab->id]) }}"
+                                                                    style="cursor: pointer;">
+                                                                    <img width="50px" height="150px"
+                                                                        src="{{ asset('uploads/img/' . $ProductsTab->image) }}"
+                                                                        alt="" />
+                                                                    <h2>{{ number_format($ProductsTab->price) }} VNĐ
+                                                                    </h2>
+                                                                    <p>{{ $ProductsTab->name }}</p>
+                                                                    <input name="qty" type="hidden" min="1" value="1" />
+                                                                    <input name="productid_hidden" type="hidden" value="{{ $ProductsTab->id }}"/>
+                                                                </a>                                                               
+                                                                <button type="submit" class="btn btn-default add-to-cart"><i
+                                                                        class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                            </span>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,16 +153,22 @@
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <a href="{{ route('productDetail', ['id' => $productsItem->id]) }}"
-                                                        style="cursor: pointer;">
-                                                        <img width="50px" height="150px"
-                                                            src="{{ asset('uploads/img/' . $productsItem->image) }}"
-                                                            alt="" />
-                                                        <h2>{{ number_format($productsItem->price) }} VNĐ</h2>
-                                                        <p>{{ $productsItem->name }}</p>
-                                                    </a>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    <form action="{{ URL::to('cart') }}" method="post">
+                                                        {{ csrf_field() }}
+                                                        <a href="{{ route('productDetail', ['id' => $productsItem->id]) }}"
+                                                            style="cursor: pointer;">
+                                                            <img width="50px" height="150px"
+                                                                src="{{ asset('uploads/img/' . $productsItem->image) }}"
+                                                                alt="" />
+                                                            <h2>{{ number_format($productsItem->price) }} VNĐ</h2>
+                                                            <p>{{ $productsItem->name }}</p>
+                                                        </a>
+                                                        <input name="qty" type="hidden" min="1" value="1" />
+                                                        <input name="productid_hidden" type="hidden" value="{{ $productsItem->id }}"/>
+                                                        <button type="submit" class="btn btn-default add-to-cart"><i
+                                                                class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                    </form>
+
                                                 </div>
                                             </div>
                                         </div>
