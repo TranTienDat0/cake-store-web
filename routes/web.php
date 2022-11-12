@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\categoriesControllerAdmin;
 use App\Http\Controllers\userControllerAdmin;
 use App\Http\Controllers\productControllerAdmin;
@@ -9,7 +9,6 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productDetailController;
 use App\Http\Controllers\cartController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,19 +19,15 @@ use App\Http\Controllers\cartController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//homeAdmin
-Route::get('/homeAdmin', function () {
-    return view('admin.home');
-})->name('homeAdmin');
-
 //register
-Route::get('register', [LoginController::class, 'register'])->name('register');
-Route::post('register', [LoginController::class, 'register_action'])->name('register.action');
+Route::get('register', [AdminController::class, 'register'])->name('register');
+Route::post('register', [AdminController::class, 'register_action'])->name('register.action');
 
-//login/logout Admin
-Route::get('loginAdmin', [LoginController::class, 'login'])->name('login');
-Route::post('loginAdmin', [LoginController::class, 'login_action'])->name('login.action');
-Route::get('logoutAdmin', [LoginController::class, 'login'])->name('logout');
+//login/
+Route::get('admin', [AdminController::class, 'index'])->name('admin');
+Route::get('loginAdmin', [AdminController::class, 'login'])->name('loginAdmin');
+Route::post('loginAdmin', [AdminController::class, 'login_action'])->name('login.action');
+Route::get('logoutAdmin', [AdminController::class, 'login'])->name('logout');
 
 //category
 Route::get('category', [categoriesControllerAdmin::class, 'index'])->name('category');
@@ -44,7 +39,7 @@ Route::get('/delete/{id}', [categoriesControllerAdmin::class, 'delete'])->name('
 
 //User
 Route::get('user', [userControllerAdmin::class, 'index'])->name('user');
-Route::get('newUser', [userControllerAdmin::class, 'create'])->name('newUser');
+Route::get('newUser', [userControllerAdmin::class, 'create_user'])->name('newUser');
 Route::post('store_user',[userControllerAdmin::class, 'store'])->name('store_user');
 Route::get('/edit_user/{user_id}', [userControllerAdmin::class, 'edit'])->name('edit_user');
 Route::post('/update_user/{user_id}', [userControllerAdmin::class, 'update'])->name('update_user');
@@ -70,3 +65,4 @@ Route::get('/productDetail/{id}',[productDetailController::class, 'index'])->nam
 Route::post('/cart', [cartController::class, 'save'])->name('cart');
 Route::get('/show-cart', [cartController::class, 'showCart'])->name('show-cart');
 Route::get('/delete_cart/{rowId}', [cartController::class, 'delete'])->name('delete_cart');
+Route::post('/update_cart', [cartController::class, 'update'])->name('update_cart');

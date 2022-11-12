@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserAdmin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class userControllerAdmin extends Controller
 {
     private $user;
-    public function __construct(UserAdmin $users)
+    public function __construct(User $users)
     {
         $this->user = $users;
     }
@@ -28,7 +28,7 @@ class userControllerAdmin extends Controller
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
-        $user = new UserAdmin([
+        $user = new User([
             'name'=>$request->name,
             'username'=>$request->username,
             'password'=>Hash::make($request->password),

@@ -13,7 +13,7 @@ class categoriesControllerAdmin extends Controller
     public function __construct(CategoryAdmin $category)
     {
         $this->category = $category;
-    }
+    } 
     public function index(){
         $categories = $this->category->paginate(5);
         return view('admin.category.index',compact('categories'));

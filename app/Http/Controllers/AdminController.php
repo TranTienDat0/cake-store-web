@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserAdmin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
-class LoginController extends Controller
+
+class AdminController extends Controller
 {
+   
+    public function index(){
+        return view('admin/home');
+    }
     public function register(){
         $data['title'] = 'Register';
         return view('frontend/account/register', $data);
@@ -21,7 +26,7 @@ class LoginController extends Controller
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
-        $user = new UserAdmin([
+        $user = new User([
             'name'=>$request->name,
             'username'=>$request->username,
             'password'=>Hash::make($request->password),
@@ -31,10 +36,7 @@ class LoginController extends Controller
     }
     //
     public function login(){
-        $data['title'] = 'Login';
-        // if(auth()->check()){
-        //     return redirect()->to('homeAdmin');
-        // }
+        $data['title'] = 'Login';      
         return view('admin/login', $data);
     }
     public function login_action(Request $request){
@@ -44,7 +46,7 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt(['username'=>$request->username, 'password'=>$request->password])){
             $request->session()->regenerate();
-            return redirect()->intended('/homeAdmin');
+            return redirect()->intended('/admin');
         }
         return back()->withErrors('Password', 'Wrong username or pasword!');
     }
