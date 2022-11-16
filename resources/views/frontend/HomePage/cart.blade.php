@@ -177,8 +177,18 @@
                             <li>Phí vận chuyển <span>Free</span></li>
                             <li>Thành tiền <span>{{ Cart::subtotal(0, ',', ',') }} VNĐ</span></li>
                         </ul>
-                        <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
+                        {{-- <a class="btn btn-default update" href="">Update</a> --}}
+                        
+                        <?php
+                        $customer_id = Session::get('id');
+                        if($customer_id != null){
+                        ?>
+                        <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}">Thanh toán</a>
+                        <?php 
+                        }else{
+                        ?>
+                        <a class="btn btn-default check_out" href="{{ URL::to('/login-check') }}">Thanh toán</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

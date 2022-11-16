@@ -9,6 +9,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productDetailController;
 use App\Http\Controllers\cartController;
+use App\Http\Controllers\checkoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,3 +67,9 @@ Route::post('/cart', [cartController::class, 'save'])->name('cart');
 Route::get('/show-cart', [cartController::class, 'showCart'])->name('show-cart');
 Route::get('/delete_cart/{rowId}', [cartController::class, 'delete'])->name('delete_cart');
 Route::post('/update_cart', [cartController::class, 'update'])->name('update_cart');
+//check-out
+Route::get('/login-check', [checkoutController::class, 'login_checkout'])->name('login-check');
+Route::post('/add-customer',[checkoutController::class, 'add_customer'])->name('add-customer');
+Route::get('/checkout', [checkoutController::class, 'checkout'])->name('checkout');
+Route::post('/save-checkout-customer',[checkoutController::class, 'save_checkout_customer'])->name('save-checkout-customer');
+Route::get('/payment', [checkoutController::class, 'payment'])->name('payment');

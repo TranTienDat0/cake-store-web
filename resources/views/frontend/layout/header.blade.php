@@ -1,5 +1,7 @@
-<header id="header"><!--header-->
-    <div class="header_top"><!--header_top-->
+<header id="header">
+    <!--header-->
+    <div class="header_top">
+        <!--header_top-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -23,9 +25,11 @@
                 </div>
             </div>
         </div>
-    </div><!--/header_top-->
+    </div>
+    <!--/header_top-->
 
-    <div class="header-middle"><!--header-middle-->
+    <div class="header-middle">
+        <!--header-middle-->
         <div class="container">
             <div class="row">
                 <div class="col-md-4 clearfix">
@@ -58,25 +62,49 @@
                 </div>
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href=""><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="{{ route('show-cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                        <ul class="nav navbar-nav">                         
+                            <?php
+                            $email = Session::get('email');
+                            if($email != null){
+                        ?>
+                            <li><a href=""><i class="fa fa-lock"></i> <?php echo $email ?></a></li>
+                            <?php 
+                            }else{
+                        ?>
+                            <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-user"></i> Tài khoản</a></li>
+                            <?php } ?>
+                            
+                            <li><a href=""><i class="fa fa-star"></i> Yêu thích</a></li>                          
+                            <li><a href="{{ route('show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                            <?php
+                                $customer_id = Session::get('id');
+                                if($customer_id != null){
+                            ?>
+                            <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                            <li><a href="{{ URL::to('/logout-check') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                          
+                            <?php 
+                                }else{
+                            ?>
+                            <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                            <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!--/header-middle-->
+    </div>
+    <!--/header-middle-->
 
-    <div class="header-bottom"><!--header-bottom-->
+    <div class="header-bottom">
+        <!--header-bottom-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -86,17 +114,20 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{ asset('home') }}" class="active">Home</a></li>
-                            @foreach ($categorys as $item) 
-                            <li class="dropdown"><a href="">{{ $item->categoriesName }}<i class="fa fa-angle-down"></i></a>
-                                @if ($item->categoryChildrent->count())                                                
-                                <ul role="menu" class="sub-menu">
-                                    @foreach ($item->categorychildrent as $categorychild)                          
-                                    <li><a href="{{ route('listCategory', ['id'=>$categorychild->id]) }}">{{ $categorychild->categoriesName }}</a></li>  
-                                    @endforeach                               
-                                </ul>
-                                @endif 
-                               
-                            </li>
+                            @foreach ($categorys as $item)
+                                <li class="dropdown"><a href="">{{ $item->categoriesName }}<i
+                                            class="fa fa-angle-down"></i></a>
+                                    @if ($item->categoryChildrent->count())
+                                        <ul role="menu" class="sub-menu">
+                                            @foreach ($item->categorychildrent as $categorychild)
+                                                <li><a
+                                                        href="{{ route('listCategory', ['id' => $categorychild->id]) }}">{{ $categorychild->categoriesName }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                </li>
                             @endforeach
                             {{-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
@@ -111,13 +142,15 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Search" />
                     </div>
                 </div>
             </div>
         </div>
-    </div><!--/header-bottom-->
-</header><!--/header-->
+    </div>
+    <!--/header-bottom-->
+</header>
+<!--/header-->
 <section id="slider">
     <!--slider-->
     <div class="container">
