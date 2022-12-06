@@ -21,7 +21,7 @@ class userControllerAdmin extends Controller
 
         return view('admin.users.addUser');
     }
-    public function store_user(Request $request){
+    public function store(Request $request){
         $request->validate([
             'name' => 'required',
             'username' => 'required|unique:tb_user',

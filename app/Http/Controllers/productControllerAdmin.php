@@ -38,7 +38,7 @@ class productControllerAdmin extends Controller
     public function store(Request $request){ 
        
         $filename = $request->image->getClientOriginalName();
-        $image = $request->file('image')->move('uploads',$filename);
+        $image = $request->file('image')->move("img",$filename);
        
         $name = request("name");
         $category_id = request("parent_id");

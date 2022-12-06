@@ -52,4 +52,22 @@ class checkoutController extends Controller
     public function payment(){
 
     }
+    public function logout_checkout(){
+        Session::flush();
+        return Redirect('/login-check');
+    }
+
+    public function login_customer(Request $request){
+        $eamil = $request->email_account;
+        $password = md5($request->password_account);
+        $result = DB::table('customer')->where('email', $eamil)->where('password',$password)->first();
+        
+        if($result){
+            Session::put('id', $result->id);
+            // Session::put('email', $request->email);
+            return Redirect::to('/checkout');
+        }else{
+            return Redirect('/login-check');
+        }
+    }
 }

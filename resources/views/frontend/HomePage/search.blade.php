@@ -33,8 +33,8 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
                         <!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
-                        @foreach ($products as $pro)
+                        <h2 class="title text-center">Kết quả tìm kiếm</h2>
+                        @foreach ($search_products as $pro)
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{ $products->links('pagination::bootstrap-4') }}
+                        {{-- {{ $search_products->links('pagination::bootstrap-4') }} --}}
                     </div>
                     <!--features_items-->
                 </div>

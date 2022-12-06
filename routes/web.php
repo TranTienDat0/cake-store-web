@@ -20,6 +20,9 @@ use App\Http\Controllers\checkoutController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view("home");
+});
 //register
 Route::get('register', [AdminController::class, 'register'])->name('register');
 Route::post('register', [AdminController::class, 'register_action'])->name('register.action');
@@ -58,6 +61,7 @@ Route::get('/delete_product/{id}', [productControllerAdmin::class, 'delete'])->n
 
 //HomePage
 Route::get('home',[homeController::class, 'index'])->name('home');
+Route::post('search',[homeController::class, 'search'])->name('search');
 //category
 Route::get('/listCategory/{id}', [categoryController::class, 'index'])->name('listCategory');
 //Detail
@@ -68,7 +72,9 @@ Route::get('/show-cart', [cartController::class, 'showCart'])->name('show-cart')
 Route::get('/delete_cart/{rowId}', [cartController::class, 'delete'])->name('delete_cart');
 Route::post('/update_cart', [cartController::class, 'update'])->name('update_cart');
 //check-out
+Route::post('/login-customer',[checkoutController::class, 'login_customer'])->name('login-customer');
 Route::get('/login-check', [checkoutController::class, 'login_checkout'])->name('login-check');
+Route::get('/logout-check', [checkoutController::class, 'logout_checkout'])->name('logout-check');
 Route::post('/add-customer',[checkoutController::class, 'add_customer'])->name('add-customer');
 Route::get('/checkout', [checkoutController::class, 'checkout'])->name('checkout');
 Route::post('/save-checkout-customer',[checkoutController::class, 'save_checkout_customer'])->name('save-checkout-customer');

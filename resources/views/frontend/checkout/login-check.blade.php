@@ -33,10 +33,10 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Đăng nhập tài khoản của bạn</h2>
-						<form action="#">
-							
-							<input type="email" placeholder="Địa chỉ email" />
-                            <input type="password" placeholder="Mật khẩu" />
+						<form action="{{ URL::to('/login-customer') }}" method="POST">
+							{{ csrf_field() }}
+							<input type="email_account" placeholder="Địa chỉ email" />
+                            <input type="password_account" placeholder="Mật khẩu" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Ghi nhớ
