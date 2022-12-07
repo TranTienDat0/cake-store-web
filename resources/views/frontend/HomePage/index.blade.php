@@ -27,9 +27,9 @@
 <!--/head-->
 
 <body>
-
+    
     @include('frontend.layout.header');
-
+    
     <section>
         <div class="container">
             <div class="row">

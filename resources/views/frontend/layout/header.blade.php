@@ -77,7 +77,7 @@
                             <li><a href=""><i class="fa fa-star"></i> Yêu thích</a></li>                          
                             <li><a href="{{ route('show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                             <?php
-                                $customer_id = Session::get('id');
+                                $customer_id = Session::get('customer_id');
                                 if($customer_id != null){
                             ?>
                             <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="{{ asset('home') }}" class="active">Home</a></li>
+                            <li><a href="{{ asset('home') }}" class="active">Trang chủ</a></li>
                             @foreach ($categorys as $item)
                                 <li class="dropdown"><a href="">{{ $item->categoriesName }}<i
                                             class="fa fa-angle-down"></i></a>

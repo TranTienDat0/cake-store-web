@@ -73,17 +73,23 @@
                             
                             <li><a href="{{ route('show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                             <?php
-                                $customer_id = Session::get('id');
-                                if($customer_id != null){
-                            ?>
-                             <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                             <li><a href="{{ URL::to('/logout-check') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-                            <?php 
-                                }else{
-                            ?>
-                             <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                             <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-                            <?php } ?>
+                            $customer_id = Session::get('customer_id');
+                            $shipping_id = Session::get('shipping_id');
+                            if($customer_id != null && $shipping_id == null){
+                        ?>
+                        <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                        <li><a href="{{ URL::to('/logout-check') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                        <?php 
+                            }elseif ($customer_id != null && $shipping_id != null) {                               
+                        ?>
+                        <li><a href="{{ URL::to('/payment') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                        <li><a href="{{ URL::to('/logout-check') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                        <?php 
+                            }else{
+                        ?>
+                        <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                        <li><a href="{{ URL::to('/login-check') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                        <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -105,7 +111,7 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="{{ asset('home') }}" class="active">Home</a></li>
+                            <li><a href="{{ asset('home') }}" class="active">Trang chủ</a></li>
                             @foreach ($categorys as $item) 
                             <li class="dropdown"><a href="">{{ $item->categoriesName }}<i class="fa fa-angle-down"></i></a>
                                 @if ($item->categoryChildrent->count())                                                
