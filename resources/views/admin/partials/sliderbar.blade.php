@@ -51,12 +51,21 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('product') }}" class="nav-link">
+                <a href="{{ route('product') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách sản phẩm</p>
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('manage-order') }}" class="nav-link">
+              <i class="fa-brands fa-jedi-order"></i>
+              <p>
+               Quản lý đơn hàng
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('user') }}" class="nav-link">
@@ -67,6 +76,7 @@
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link">
               <i class="fa-solid fa-right-from-bracket"></i>

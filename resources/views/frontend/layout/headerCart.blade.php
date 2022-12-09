@@ -60,7 +60,7 @@
                     <div class="shop-menu clearfix pull-right">
                         <ul class="nav navbar-nav">
                             <?php
-                            $email = Session::get('email');
+                            $email = Session::get('customer_email');
                             if($email != null){
                         ?>
                             <li><a href=""><i class="fa fa-lock"></i> <?php echo $email ?></a></li>

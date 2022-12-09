@@ -81,3 +81,5 @@ Route::post('/save-checkout-customer',[checkoutController::class, 'save_checkout
 Route::get('/payment', [checkoutController::class, 'payment'])->name('payment');
 //order
 Route::post('/order-place',[checkoutController::class, 'order_place'])->name('order-place');
+Route::get('/manage-order',[checkoutController::class, 'manage_order'])->name('manage-order');
+Route::get('/view-order/{orderID}',[checkoutController::class, 'view_order'])->name('view-order');

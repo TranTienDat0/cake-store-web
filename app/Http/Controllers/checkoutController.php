@@ -8,6 +8,7 @@ use App\Models\Categories;
 use Illuminate\Support\Facades\Redirect;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
+
 session_start();
 
 class checkoutController extends Controller
@@ -25,10 +26,10 @@ class checkoutController extends Controller
         $password = md5($request->password);
         $phone = $request->phone;
 
-        $customer_id = DB::table('customer')->insertGetId(['name'=>$name, 'email'=>$email, 'password'=>$password, 'phone'=>$phone]);
+        $customer_id = DB::table('customer')->insertGetId(['customer_name'=>$name, 'customer_email'=>$email, 'password'=>$password, 'customer_phone'=>$phone]);
         Session::put('customer_id', $customer_id);
-        Session::put('name', $request->name);
-        Session::put('email', $request->email);
+        Session::put('customer_name', $request->name);
+        Session::put('customeremail', $request->email);
 
         return Redirect::to('login-check');
     }
@@ -88,7 +89,10 @@ class checkoutController extends Controller
         if( $data['payment_method'] == 1){
             echo 'Thanh toán bằng thẻ ATM';
         }else if( $data['payment_method'] == 2){
-            echo 'Thanh toán bằng tiền mặt';
+            Cart::destroy();
+            $categorys = Categories::where('parent_id', 0)->get();
+
+             return view('frontend.checkout.handcash', compact('categorys'));
         }else{
             echo 'Thanh toán bằng thẻ ghi nợ';
         }
@@ -101,14 +105,35 @@ class checkoutController extends Controller
     public function login_customer(Request $request){
         $eamil = $request->email;
         $password = md5($request->password);
-        $result = DB::table('customer')->where('email', $eamil)->where('password',$password)->first();
+        $result = DB::table('customer')->where('customer_email', $eamil)->where('password',$password)->first();
         
         if($result){
             Session::put('customer_id', $result->customer_id);
-            Session::put('email', $request->email);
+            Session::put('customer_email', $request->email);
             return Redirect::to('/home');
         }else{
             return Redirect('/login-check');
         }
+    }
+
+    public function manage_order(){
+
+        $all_order = DB::table('order')
+        ->join('customer','order.customer_id','=','customer.customer_id')
+        ->select('order.*', 'customer.customer_name')
+        ->orderBy('order.order_id', 'asc')->get();
+        $manage_order = view('admin.order.manage_order', compact('all_order'));
+        return view('admin.layout.layoutAdmin')->with('admin.order.manage_order', $manage_order);
+    }
+
+    public function view_order($orderID){
+
+        $order_by_id = DB::table('order')
+        ->join('customer','order.customer_id','=','customer.customer_id')
+        ->join('shipping','order.shipping_id','=','shipping.shipping_id')
+        ->join('order_detail','order.order_id','=','order_detail.order_id')
+        ->select('order.*', 'customer.*','shipping.*','order_detail.*')->first();
+        $manage_order_by_id = view('admin.order.view_order', compact('order_by_id'));
+        return view('admin.layout.layoutAdmin')->with('admin.order.view_order', $manage_order_by_id);
     }
 }
