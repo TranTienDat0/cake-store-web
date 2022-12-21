@@ -7,6 +7,11 @@
     @parent
 
     <p>This is appended to the master sidebar.</p>
+    <style>
+        .table th, td{
+            text-align: center;
+        }
+    </style>
 @endsection
 
 
@@ -39,9 +44,10 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tên khách hàng</th>
+                                    <th scope="col">Ngày đặt</th>
                                     <th scope="col">Tổng tiền</th>
                                     <th scope="col">Tình trạng</th>                                    
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="text-align: center;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,18 +55,24 @@
                                     <tr>
                                         <th scope="row">{{ $order->order_id }}</th>
                                         <td>{{ $order->customer_name }}</td>
+                                        <td>{{ $order->Date }}</td>
                                         <td>{{ $order->order_total }}</td>
-                                        <td>{{ $order->order_status }}</td>
-                                        {{-- <td>
-                                            <img width="100px" height="70px" src="{{asset('uploads/img/'. $product->image) }}" alt="">
-                                        </td>
                                         <td>
-                                            
-                                        </td> --}}
-                                        <td>
+                                            @if($order->order_status == 'Đang chờ xử lý')
+                                            Đang chờ xử lý
+                                            @else
+                                            Đã giao hàng
+                                            @endif
+                                        </td>                                     
+                                        <td style="text-align: center;">
+                                            @if($order->order_status == 'Đang chờ xử lý')
+                                            <a href="{{ URL::to('delivery', ['order_id' => $order->order_id]) }}"
+                                                class="btn btn-danger">Giao hàng</a>
+                                            @endif
                                             <a href="{{ URL::to('view-order', ['order_id' => $order->order_id]) }}"
-                                                class="btn btn-default">View</a>
+                                                class="btn btn-success">Chi tiết</a>
                                         </td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>

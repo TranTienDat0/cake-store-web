@@ -44,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                                    
                                     <tr>
                                         <th scope="row">{{ $order_by_id->customer_id }}</th>
                                         <td>{{ $order_by_id->customer_name }}</td>
@@ -63,7 +63,7 @@
             </div><!-- /.container-fluid -->
         </div>
         
-       <h2 style="margin: 30px 10px">Thông tin vận chuyển</h2>
+       <h2 style="margin: 30px 10px">Thông tin người nhận</h2>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -100,7 +100,7 @@
             </div><!-- /.container-fluid -->
         </div>
         
-       <h2 style="margin: 30px 10px">Liệt kê chi tiết đơn hàng</h2>
+       <h2 style="margin: 30px 10px">Thông tin chi tiết đơn hàng</h2>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">

@@ -50,7 +50,6 @@ Route::post('/update_user/{user_id}', [userControllerAdmin::class, 'update'])->n
 Route::get('/delete_user/{user_id}', [userControllerAdmin::class, 'delete'])->name('delete_user');
 
 //product
-
 Route::get('product', [productControllerAdmin::class, 'index'])->name('product');
 Route::get('newProduct', [productControllerAdmin::class, 'create'])->name('newProduct');
 Route::post('store_product', [productControllerAdmin::class, 'store'])->name('store_product');
@@ -83,3 +82,4 @@ Route::get('/payment', [checkoutController::class, 'payment'])->name('payment');
 Route::post('/order-place',[checkoutController::class, 'order_place'])->name('order-place');
 Route::get('/manage-order',[checkoutController::class, 'manage_order'])->name('manage-order');
 Route::get('/view-order/{orderID}',[checkoutController::class, 'view_order'])->name('view-order');
+Route::get('/delivery/{orderID}',[checkoutController::class, 'delivery'])->name('delivery');
