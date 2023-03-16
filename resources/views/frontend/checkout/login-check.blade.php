@@ -51,7 +51,7 @@
                     <!--/login form-->
                 </div>
                 <div class="col-sm-1">
-                    <h2 class="or">OR</h2>
+                    <h2 class="or">ORr</h2>
                 </div>
                 <div class="col-sm-4">
                     <div class="signup-form">
